@@ -4,6 +4,7 @@ import aiohttp
 from aiohttp import web
 import google.generativeai as genai
 from telethon import TelegramClient, events
+from telethon.sessions import StringSession
 from telebot.async_telebot import AsyncTeleBot
 from dotenv import load_dotenv
 
@@ -24,7 +25,12 @@ genai.configure(api_key=AI_API_KEY)
 model = genai.GenerativeModel('gemini-2.5-flash')
 
 # Telegram mijozlari
-client = TelegramClient('shaxsiy_sessiya', API_ID, API_HASH, loop=loop)
+SESSION_STRING = os.getenv("SESSION_STRING")
+if SESSION_STRING:
+    client = TelegramClient(StringSession(SESSION_STRING), API_ID, API_HASH, loop=loop)
+else:
+    client = TelegramClient('shaxsiy_sessiya', API_ID, API_HASH, loop=loop)
+
 bot = AsyncTeleBot(BOT_TOKEN)
 
 # Xabarlarni saqlash uchin lug'at (Memory)
