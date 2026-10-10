@@ -1,0 +1,7 @@
+telethon==1.33.1
+python-dotenv==1.0.1
+aiogram==3.4.1
+openai==1.14.0
+google-generativeai==0.4.1
+aiohttp
+pyTelegramBotAPI
