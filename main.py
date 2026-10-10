@@ -27,9 +27,11 @@ model = genai.GenerativeModel('gemini-2.5-flash')
 # Telegram mijozlari
 SESSION_STRING = os.getenv("SESSION_STRING")
 if SESSION_STRING:
+    SESSION_STRING = SESSION_STRING.strip()
     client = TelegramClient(StringSession(SESSION_STRING), API_ID, API_HASH, loop=loop)
 else:
     client = TelegramClient('shaxsiy_sessiya', API_ID, API_HASH, loop=loop)
+
 
 bot = AsyncTeleBot(BOT_TOKEN)
 
